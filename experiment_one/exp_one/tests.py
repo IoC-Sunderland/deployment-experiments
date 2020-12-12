@@ -17,5 +17,5 @@ class HomePageTests(TestCase):
 
     # User expects to see a username and password box with Login button
     def test_login_form_exists_on_page(self):
-        pass
+        self.driver.find_element_by_class_name('container')
 
