@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "exp_one/public_template.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block main %}
+
+<h1 id="welcomeMessage">Welcome, {{ username }}!</h1>
+
+{% endblock %}

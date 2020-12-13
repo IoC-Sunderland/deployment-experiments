@@ -71,6 +71,7 @@ class HomePageTests(TestCase):
     
     # Given a valid username and password are provided then 
     # Gavin expects to see the Welcome page when the Login button is clicked
+    # Welcome page includes bespoke message welcoming Gavin
     def test_welcome_page_displayed_when_login_details_valid(self):
         username = self.driver.find_element_by_id('username')
         username.send_keys('Gavin')
@@ -78,5 +79,20 @@ class HomePageTests(TestCase):
         password.send_keys('TestPass')
         login_button = self.driver.find_element_by_id('submit')
         login_button.click()
-        self.driver.get('http://127.0.0.1:8000/welcome')
-        self.assertIn("Welcome", self.driver.title)
+        time.sleep(DELAY)
+        welcome_message = self.driver.find_element_by_id('welcomeMessage')
+        self.assertEqual(welcome_message.text, 'Welcome, Gavin!')
+
+    # Susan is a new user to www.gavmac.com and expects to a 'User does not exist"
+    # message when she trys to login
+    def test_error_page_displayed_when_login_details_invalid(self):
+        username = self.driver.find_element_by_id('username')
+        username.send_keys('Susan')
+        password = self.driver.find_element_by_id('password')
+        password.send_keys('SusanTestPass')
+        login_button = self.driver.find_element_by_id('submit')
+        login_button.click()
+        time.sleep(DELAY)
+        user_does_not_exist_message = self.driver.find_element_by_id('userDoesNotExist')
+        self.assertEqual(user_does_not_exist_message.text, \
+            'Invalid Credentials: The username: Susan does not exist.')
