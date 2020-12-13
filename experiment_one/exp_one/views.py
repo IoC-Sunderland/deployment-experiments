@@ -36,3 +36,7 @@ def index(request):
     return render(request, "exp_one/index.html", {
         'Project Name': 'experiment_one',
     })
+
+def welcome(request):
+
+    return render(request, "exp_one/welcome.html")

@@ -32,6 +32,8 @@ class HomePageTests(TestCase):
         password.send_keys('TestPass')
         time.sleep(DELAY)
 
+    # Gavin expects to be able to re-enter a username and password if both fields are empty 
+    # when Login button clicked
     def test_message_shown_if_username_AND_password_empty_when_login_button_clicked(self):
         username = self.driver.find_element_by_id('username')
         password = self.driver.find_element_by_id('password')
@@ -42,6 +44,8 @@ class HomePageTests(TestCase):
         message = self.driver.find_element_by_class_name('warning')
         self.assertEqual(message.text, 'Missing fields for username, password')
 
+    # Gavin expects to be able to re-enter a username if field was empty 
+    # when Login button clicked
     def test_message_shown_if_username_field_is_empty_when_login_button_clicked(self):
         username = self.driver.find_element_by_id('username')
         username.clear()
@@ -52,6 +56,8 @@ class HomePageTests(TestCase):
         message = self.driver.find_element_by_class_name('warning')
         self.assertEqual(message.text, 'Missing fields for username')
     
+    # Gavin expects to be able to re-enter a password if field was empty 
+    # when Login button clicked
     def test_message_shown_if_password_field_is_empty_when_login_button_clicked(self):
         username = self.driver.find_element_by_id('username')
         username.send_keys('Gavin')
@@ -61,3 +67,16 @@ class HomePageTests(TestCase):
         login_button.click()
         message = self.driver.find_element_by_class_name('warning')
         self.assertEqual(message.text, 'Missing fields for password')
+
+    
+    # Given a valid username and password are provided then 
+    # Gavin expects to see the Welcome page when the Login button is clicked
+    def test_welcome_page_displayed_when_login_details_valid(self):
+        username = self.driver.find_element_by_id('username')
+        username.send_keys('Gavin')
+        password = self.driver.find_element_by_id('password')
+        password.send_keys('TestPass')
+        login_button = self.driver.find_element_by_id('submit')
+        login_button.click()
+        self.driver.get('http://127.0.0.1:8000/welcome')
+        self.assertIn("Welcome", self.driver.title)
