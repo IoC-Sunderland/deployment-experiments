@@ -36,13 +36,12 @@
         {% endif %}
       
       </form>
-    
+      <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" id="signup" class="btn btn-primary">Sign Up</button>
+      </form>
     </div>
   </div>
-  <form action="{% url 'signup' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit" id="signup" class="btn btn-primary">Sign Up</button>
-  </form>
 </div>
 
 {% endblock %}
