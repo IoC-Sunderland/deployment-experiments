@@ -48,12 +48,13 @@ def index(request):
                 request, messages.WARNING, f"Invalid Credentials")
             return render(request, "exp_one/index.html")
 
-        return render(request, "exp_one/welcome.html", {
-        'username': details['username'],
-    })
-
     return render(request, "exp_one/index.html")
 
 def welcome(request):
 
     return render(request, "exp_one/welcome.html")
+
+
+def signup(request):
+
+    return render(request, "exp_one/sign-up.html")

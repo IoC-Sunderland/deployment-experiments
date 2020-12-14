@@ -20,4 +20,5 @@ urlpatterns = [
     path('', include('exp_one.urls')),
     path('admin/', admin.site.urls),
     path('welcome/', include('exp_one.urls')),
+    path('signup/', include('exp_one.urls')),
 ]

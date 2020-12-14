@@ -1,4 +1,4 @@
-{% extends "public_template.html" %}
+{% extends "exp_one/public_template.html" %}
 
 {% block title %}Sign Up{% endblock %}
 
@@ -11,7 +11,7 @@
       <hr>
       <!-- We set the action attribute to be the Flask route we want to send form data to 
            Also, we need to pass the request method in the method attribute - here it is "POST" -->
-      <form action="{% url 'sign_up' %}" method="POST">
+      <form action="{% url 'signup' %}" method="POST">
         {% csrf_token %}
 
         <div class="form-group">
@@ -45,3 +45,4 @@
     </div>
   </div>
 </div>
+{% endblock %}

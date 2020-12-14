@@ -95,18 +95,9 @@ class HomePageTests(TestCase):
         invalid_credentials_message = self.driver.find_element_by_class_name('warning')
         self.assertEqual(invalid_credentials_message.text, \
             'Invalid Credentials')
-        time.sleep(DELAY)
-        username = self.driver.find_element_by_id('username')
-        username.send_keys('Gavin')
-        password = self.driver.find_element_by_id('password')
-        password.send_keys('TestPass')
-        login_button = self.driver.find_element_by_id('submit')
-        login_button.click()
-        time.sleep(DELAY)
-        welcome_message = self.driver.find_element_by_id('welcomeMessage')
-        self.assertEqual(welcome_message.text, 'Welcome, Gavin!')
+    
 
-    # Susan is a new user to www.gavmac.com and expects to a 'User does not exist"
+    # Susan is a new user to www.gavmac.com and expects to a 'Invalid Credentials'
     # message when she trys to login
     def test_error_page_displayed_when_login_details_invalid(self):
         username = self.driver.find_element_by_id('username')
@@ -119,8 +110,16 @@ class HomePageTests(TestCase):
         invalid_credentials_message = self.driver.find_element_by_class_name('warning')
         self.assertEqual(invalid_credentials_message.text, \
             'Invalid Credentials')
+        
 
-    # Susan expects to be redirected to a sign-up page so she can joijn
+    # Susan expects to be able to sign up so she can join
     # www.gavmac.com as a new user
-    def test_sign_up_page_rendered_when_user__does_not_exist_in_database(self):
-        pass
+    def test_sign_up_button_renders_sign_up_pages(self):
+        username = self.driver.find_element_by_id('username')
+        username.clear()
+        password = self.driver.find_element_by_id('password')
+        password.clear()
+        signup_button = self.driver.find_element_by_id('signup')
+        signup_button.click()
+        time.sleep(DELAY)
+        self.assertIn("Sign Up", self.driver.title)
