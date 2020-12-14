@@ -93,6 +93,8 @@ class HomePageTests(TestCase):
         login_button = self.driver.find_element_by_id('submit')
         login_button.click()
         time.sleep(DELAY)
-        user_does_not_exist_message = self.driver.find_element_by_id('userDoesNotExist')
-        self.assertEqual(user_does_not_exist_message.text, \
-            'Invalid Credentials: The username: Susan does not exist.')
+        invalid_credentials_message = self.driver.find_element_by_class_name('warning')
+        self.assertEqual(invalid_credentials_message.text, \
+            'Invalid Credentials')
+
+    # 

@@ -3,8 +3,11 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
-STUB_USER = User.objects.create_user(username='Gavin', email='', password='TestPass')
-STUB_USER.save()
+try:
+    STUB_USER = User.objects.create_user(username='Gavin', email='', password='TestPass')
+    STUB_USER.save()
+except: 
+    pass
 
 
 def index(request):
@@ -41,9 +44,9 @@ def index(request):
 
         else:
         # A backend did not authenticate
-            return render(request, "exp_one/user_does_not_exist.html", {
-                'username': details['username'],
-             })
+            messages.add_message(
+                request, messages.WARNING, f"Invalid Credentials")
+            return render(request, "exp_one/index.html")
 
         return render(request, "exp_one/welcome.html", {
         'username': details['username'],
