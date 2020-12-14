@@ -98,7 +98,9 @@ class HomePageTests(TestCase):
     
 
     # Susan is a new user to www.gavmac.com and expects to a 'Invalid Credentials'
-    # message when she trys to login
+    # message when she trys to login. She then expects to see a sign up page when she clicks
+    # "Sign Up" button.
+    # After entering ddetails she expects to see a Welcome page after clicking "Sign Up" button.
     def test_error_page_displayed_when_login_details_invalid(self):
         username = self.driver.find_element_by_id('username')
         username.send_keys('Susan')

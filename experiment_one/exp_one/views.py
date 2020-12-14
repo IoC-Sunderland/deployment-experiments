@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 
 try:
     STUB_USER = User.objects.create_user(username='Gavin', email='', password='TestPass')
@@ -33,15 +33,14 @@ def index(request):
             return render(request, "exp_one/index.html")
 
         # Check user exists
-        user = authenticate(username=details['username'],
-                             password=details['password'])
+        user = authenticate(request, username=details['username'], password=details['password'])
+        print(user)
 
         if user is not None:
-        # A backend authenticated the credentials
+            login(request, user)
             return render(request, "exp_one/welcome.html", {
             'username': details['username'],
             })
-
         else:
         # A backend did not authenticate
             messages.add_message(
@@ -80,11 +79,11 @@ def signup(request):
             return render(request, "exp_one/sign-up.html")
 
         # Check user exists
-        user = authenticate(username=details['username'],
-                             password=details['password'])
+        user = authenticate(request, username=details['username'], password=details['password'])
+        print(user)
 
         if user is not None:
-        # A backend authenticated the credentials
+            login(request, user)
             return render(request, "exp_one/welcome.html", {
             'username': details['username'],
             })
@@ -95,9 +94,9 @@ def signup(request):
                                              password =  details['password'])
 
             user.save()
-
-        return render(request, "exp_one/welcome.html", {
-            'username': details['username'],
-            })
+            login(request, user)
+            return render(request, "exp_one/welcome.html", {
+                'username': details['username'],
+                })
 
     return render(request, "exp_one/sign-up.html")

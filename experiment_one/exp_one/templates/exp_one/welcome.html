@@ -4,6 +4,8 @@
 
 {% block main %}
 
-<h1 id="welcomeMessage">Welcome, {{ username }}!</h1>
+    {% if user.is_authenticated %}
+        <h1 id="welcomeMessage">Welcome, {{ username }}!</h1>
+    {% endif %}
 
 {% endblock %}
