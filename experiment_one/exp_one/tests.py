@@ -112,8 +112,8 @@ class HomePageTests(TestCase):
             'Invalid Credentials')
         
 
-    # Susan expects to be able to sign up so she can join
-    # www.gavmac.com as a new user
+    # Susan expects to be able to see a sign up page after she clicks on 'Sign Up;
+    # button
     def test_sign_up_button_renders_sign_up_pages(self):
         username = self.driver.find_element_by_id('username')
         username.clear()
@@ -123,3 +123,30 @@ class HomePageTests(TestCase):
         signup_button.click()
         time.sleep(DELAY)
         self.assertIn("Sign Up", self.driver.title)
+
+    
+    # Susan expects to be able to enter a username, email and password for
+    # her new account at www.gavmac.com
+    def test_user_can_enter_username_email_and_password_details(self):
+        username = self.driver.find_element_by_id('username')
+        username.clear()
+        password = self.driver.find_element_by_id('password')
+        password.clear()
+        signup_button = self.driver.find_element_by_id('signup')
+        signup_button.click()
+        time.sleep(DELAY)
+        self.assertIn("Sign Up", self.driver.title)
+        username = self.driver.find_element_by_id('username')
+        username.clear()
+        email = self.driver.find_element_by_id('email')
+        email.clear()
+        password = self.driver.find_element_by_id('password')
+        password.clear()
+        username.send_keys('Susan')
+        email.send_keys('susan@susan.com')
+        password.send_keys('SusanTestPass')
+        time.sleep(DELAY)
+        signup_button = self.driver.find_element_by_id('signup')
+        signup_button.click()
+        welcome_message = self.driver.find_element_by_id('welcomeMessage')
+        self.assertEqual(welcome_message.text, 'Welcome, Susan!')
