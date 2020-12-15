@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 try:
     STUB_USER = User.objects.create_user(username='Gavin', email='', password='TestPass')
@@ -34,7 +35,6 @@ def index(request):
 
         # Check user exists
         user = authenticate(request, username=details['username'], password=details['password'])
-        print(user)
 
         if user is not None:
             login(request, user)
@@ -50,6 +50,7 @@ def index(request):
     return render(request, "exp_one/index.html")
 
 
+@login_required
 def welcome(request):
 
     return render(request, "exp_one/welcome.html")
