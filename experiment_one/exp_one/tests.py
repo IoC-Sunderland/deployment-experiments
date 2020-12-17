@@ -134,6 +134,7 @@ class HomePageTests(TestCase):
         signup_button.click()
         welcome_message = self.driver.find_element_by_id('welcomeMessage')
         self.assertEqual(welcome_message.text, 'Welcome, Susan!')
+         
         
 
     # Susan expects to be able to see a sign up page after she clicks on 'Sign Up;

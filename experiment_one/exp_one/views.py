@@ -50,12 +50,6 @@ def index(request):
     return render(request, "exp_one/index.html")
 
 
-@login_required
-def welcome(request):
-
-    return render(request, "exp_one/welcome.html")
-
-
 def signup(request):
     
     if request.method == "POST":
