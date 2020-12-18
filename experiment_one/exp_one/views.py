@@ -2,13 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-
-try:
-    STUB_USER = User.objects.create_user(username='Gavin', email='', password='TestPass')
-    STUB_USER.save()
-except: 
-    pass
 
 
 def index(request):
