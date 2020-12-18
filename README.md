@@ -74,7 +74,7 @@ TBC
 
 ## Authors
 
-* **Gav McClary
+* Gav McClary
 
 ## License
 
