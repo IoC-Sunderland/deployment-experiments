@@ -10,7 +10,6 @@ See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
 
 1. Create a fresh folder then move inside and issue command:
 
