@@ -1,0 +1,11 @@
+{% extends "exp_one/public_template.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block main %}
+
+    {% if user.is_authenticated %}
+        <h1 id="welcomeMessage">Welcome, {{ username }}!</h1>
+    {% endif %}
+
+{% endblock %}
