@@ -9,7 +9,7 @@ class HomePageTests(TestCase):
     # Gavin goes to www.gavmac.com
     def setUp(self):
         self.driver = webdriver.Chrome()
-        self.driver.get('http://127.0.0.1:8000')
+        self.driver.get('http://127.0.0.1:5000')
 
     def tearDown(self):
         self.driver.close()
