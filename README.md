@@ -57,7 +57,7 @@ python manage.py test
 
 ## Deployment
 
-Deployed at: https://dashboard.heroku.com/apps/ioc-experiment-one
+Deployed at: https://ioc-experiment-one.herokuapp.com/
 
 Deployment instructions to follow...
 
